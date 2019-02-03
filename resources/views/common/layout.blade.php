@@ -1,0 +1,10 @@
+<html>
+@include('common.head')
+<body>
+@include('common.menu')
+@yield('page_content')
+@include('common.footer')
+@include('common.script')
+@yield('page_script')
+</body>
+</html>
