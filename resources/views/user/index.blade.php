@@ -19,26 +19,34 @@
                 </div>
             </div>
             <div class="twelve wide stretched column">
-                <form class="ui form" action="{{ route('user.update') }}" method="POST" enctype="multipart/form-data">
+                @if(session('success'))
+                    <div class="ui positive message">
+                        <i class="close icon"></i>
+                        {{session('success')}}
+                    </div>
+                @endif
+                <form class="ui form" action="{{ route('user.update',$user->id) }}" method="POST" enctype="multipart/form-data">
                     {{--模拟put请求--}}
-                    <input type="hidden" name="_method" value="PUT">
+                    {{--<input type="hidden" name="_method" value="PUT">--}}
+                    @csrf
+                    {{method_field('PUT')}}
                     <div class="three fields">
                         <div class="field">
-                            <input type="file" name="avatar" class="dropify" data-default-file=""
+                            <input type="file" name="avatar" class="dropify" data-default-file="{{$user->cover}}"
                                    data-allowed-file-extensions="pdf png psd"/>
                         </div>
                     </div>
                     <div class="two fields">
                         <div class="field">
                             <label>用户名</label>
-                            <input type="text" name="name" value="" placeholder="请输入图书名称">
+                            <input type="text" name="name" value="{{$user->name}}" placeholder="请输入图书名称">
                         </div>
                     </div>
                     <div class="field">
                         <label>个人简介</label>
-                        <textarea rows="4" name="description"></textarea>
+                        <textarea rows="4" name="description">{{$user->description}}</textarea>
                     </div>
-                    <button class="ui green button" type="submit">确认修改</button>
+                    <button class="ui green button" type="submit" value="submit">确认修改</button>
                 </form>
             </div>
         </div>
