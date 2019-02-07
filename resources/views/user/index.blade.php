@@ -25,10 +25,12 @@
                         {{session('success')}}
                     </div>
                 @endif
-                <form class="ui form" action="{{ route('user.update',$user->id) }}" method="POST" enctype="multipart/form-data">
+                <form class="ui form {{$errors->any() ? 'error':''}}" action="{{ route('user.update',$user->id) }}"
+                      method="POST" enctype="multipart/form-data">
                     {{--模拟put请求--}}
                     {{--<input type="hidden" name="_method" value="PUT">--}}
                     @csrf
+                    @include('common.formMessage')
                     {{method_field('PUT')}}
                     <div class="three fields">
                         <div class="field">
@@ -47,6 +49,7 @@
                         <textarea rows="4" name="description">{{$user->description}}</textarea>
                     </div>
                     <button class="ui green button" type="submit" value="submit">确认修改</button>
+
                 </form>
             </div>
         </div>

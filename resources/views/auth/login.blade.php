@@ -41,15 +41,7 @@
                     </div>
                     <input type="submit" value="登录" class="ui fluid large teal submit button">
                 </div>
-                <div class="ui error message">
-                    @if($errors->any())
-                        <ul class="list">
-                            @foreach($errors->all() as $errors_msg)
-                                <li>{{$errors_msg}}</li>
-                            @endforeach
-                        </ul>
-                    @endif
-                </div>
+            @include('common.formMessage')
             </form>
             <div class="ui message">
                 还没有账号？ <a href="{{route('register')}}">注册一个</a>

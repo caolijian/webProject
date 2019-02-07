@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -69,10 +71,26 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
+//    public function update(Request $request, $id)
     {
+
+//        $request->validate([
+//            'name' => [
+//                'required',
+//                'max:15',
+//                Rule::unique('users')->ignore($id)
+//            ],
+//            'description' => 'required|between:3,255'
+//        ],[
+//            'name.required' => '用户名不能为空！',
+//            'name.unique' => ':input 已经存在！！！！',
+//        ]);
+
+
         $user = Auth::user();
         $user->name = $request->name;
+        $user->description = $request->description;
 
         $user->save();
         return back()->with('success','更新用户信息成功！');
