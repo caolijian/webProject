@@ -34,8 +34,8 @@
                     {{method_field('PUT')}}
                     <div class="three fields">
                         <div class="field">
-                            <input type="file" name="avatar" class="dropify" data-default-file="{{$user->cover}}"
-                                   data-allowed-file-extensions="pdf png psd"/>
+                            <input type="file" name="cover" class="dropify" data-default-file="{{$user->cover}}"
+                                   data-allowed-file-extensions="jpg png jpeg"/>
                         </div>
                     </div>
                     <div class="two fields">

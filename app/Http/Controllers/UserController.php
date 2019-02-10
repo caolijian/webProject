@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -18,7 +19,7 @@ class UserController extends Controller
     {
 
         $user = Auth::user();
-        return view('user.index',compact('user'));
+        return view('user.index', compact('user'));
     }
 
     /**
@@ -34,7 +35,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,7 +46,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -56,7 +57,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -67,8 +68,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(UserUpdateRequest $request, $id)
@@ -86,20 +87,23 @@ class UserController extends Controller
 //            'name.required' => '用户名不能为空！',
 //            'name.unique' => ':input 已经存在！！！！',
 //        ]);
-
-
+        $data = [
+            'name' => $request->name,
+            'description' => $request->description
+        ];
+        if ($request->file('cover')) {
+            $cover = $request->file('cover')->store('public/cover');
+            $data['cover'] = Storage::url($cover);
+        }
         $user = Auth::user();
-        $user->name = $request->name;
-        $user->description = $request->description;
-
-        $user->save();
-        return back()->with('success','更新用户信息成功！');
+        $user->update($data);
+        return back()->with('success', '更新用户信息成功！');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

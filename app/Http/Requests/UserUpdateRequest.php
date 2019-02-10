@@ -34,7 +34,8 @@ class UserUpdateRequest extends FormRequest
                 'max:15',
                 Rule::unique('users')->ignore($id)
             ],
-            'description' => 'required|between:3,255'
+            'description' => 'required|between:3,255',
+            'cover' => 'sometimes|image'
 
         ];
     }
