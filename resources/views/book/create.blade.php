@@ -34,7 +34,7 @@
                             <p>在这里输入图书主要内容</p>
                         </div>
                     </div>
-                    <button class="ui green button" type="submit">确认修改</button>
+                    <button class="ui green button" type="submit">确认发布</button>
                     <a class="ui red button" href="index.html">返回书架</a>
                     @include('common.formMessage')
                 </form>
