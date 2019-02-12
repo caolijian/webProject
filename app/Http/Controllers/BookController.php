@@ -17,7 +17,11 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('book.index', compact('book'));
+//        return view('book.index', compact('book'));
+//        $book = Book::get();
+//        dd($book->all());
+        $book = Book::withTarshed()->get();
+        dd($book->all());
     }
 
     /**
@@ -28,6 +32,7 @@ class BookController extends Controller
     public function create()
     {
         return view('book.create',compact('book/create'));
+
     }
 
     /**
@@ -100,6 +105,6 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Book::find($id)->delete();
     }
 }
