@@ -39,7 +39,6 @@ class BookController extends Controller
      */
     public function store(BookRequest $request)
     {
-        //return view('user.index');
         $data = $request->only([
             'title',
             'desc',
@@ -51,8 +50,8 @@ class BookController extends Controller
         $file = $request->file('picture');
 
         if($file){
-            $cover_path = $file->store('public/book');
-            $data['cover'] = Storage::url($cover_path);
+            $pic_path = $file->store('public/book');
+            $data['picture'] = Storage::url($pic_path);
         }
         Book::create($data);
 
