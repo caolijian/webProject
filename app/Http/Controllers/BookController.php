@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
+use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class BookController extends Controller
 {
@@ -29,12 +33,30 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param BookRequest $request
+     * 
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
-        //
+        //return view('user.index');
+        $data = $request->only([
+            'title',
+            'desc',
+            'picture',
+            'author',
+            'content'
+        ]);
+
+        $file = $request->file('picture');
+
+        if($file){
+            $cover_path = $file->store('public/book');
+            $data['cover'] = Storage::url($cover_path);
+        }
+        Book::create($data);
+
+        return back()->with('success','新增图书成功！');
     }
 
     /**
