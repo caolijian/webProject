@@ -18,13 +18,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::paginate(2);
-
-
-        return view('book.index',compact('books'));
-//        $book = Book::get();
-//        dd($book->all());
-//        $book = Book::withTarshed()->get();
-//        dd($book->all());
+        return view('book.index', compact('books'));
     }
 
     /**
@@ -34,7 +28,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('book.create',compact('book/create'));
+        return view('book.create', compact('book/create'));
 
     }
 
@@ -42,7 +36,7 @@ class BookController extends Controller
      * Store a newly created resource in storage.
      *
      * @param BookRequest $request
-     * 
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(BookRequest $request)
@@ -57,19 +51,19 @@ class BookController extends Controller
 
         $file = $request->file('picture');
 
-        if($file){
+        if ($file) {
             $pic_path = $file->store('public/book');
             $data['picture'] = Storage::url($pic_path);
         }
         Book::create($data);
 
-        return back()->with('success','新增图书成功！');
+        return back()->with('success', '新增图书成功！');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -80,30 +74,49 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $book = Book::find($id);
+        return view('book.edit', compact('book'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  BookRequest $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BookRequest $request, $id)
     {
-//        return view('book.edit',compact('book/update'));
+        $data = $request->only([
+            'title',
+            'desc',
+            'picture',
+            'author',
+            'content'
+        ]);
+
+        $file = $request->file('picture');
+
+        if ($file) {
+            $pic_path = $file->store('public/book');
+            $data['picture'] = Storage::url($pic_path);
+        }
+
+        $book = Book::find($id);
+        $book->update($data);
+
+        return back()->with('success', '图书信息修改成功！');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
