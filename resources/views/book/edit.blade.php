@@ -8,7 +8,8 @@
 @section('page_content')
     <div class="ui container">
         <h2 class="ui dividing header">添加新的图书</h2>
-        <form class="ui form {{ $errors->any() ? 'error' : '' }}" method="POST" action="{{ route('book.update',$book->id) }}"
+        <form class="ui form {{ $errors->any() ? 'error' : '' }}" method="POST"
+              action="{{ route('book.update',$book->id) }}"
               enctype="multipart/form-data">
             <div class="ui grid">
                 <div class="four wide computer column">
@@ -36,7 +37,7 @@
                     </div>
                     <div class="field">
                         <div id="editor">
-                            <p>{{$book->content}}</p>
+                            <p>{!!$book->content!!}</p>
                         </div>
                     </div>
                     <button class="ui green button" type="submit" value="submit">确认修改</button>
