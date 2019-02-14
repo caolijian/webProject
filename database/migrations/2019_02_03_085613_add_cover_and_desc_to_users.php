@@ -14,8 +14,8 @@ class AddCoverAndDescToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('cover');
-            $table->string('description');
+            $table->string('cover')->nullable();
+            $table->string('description')->nullable();
         });
     }
 

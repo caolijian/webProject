@@ -17,11 +17,14 @@ class BookController extends Controller
      */
     public function index()
     {
-//        return view('book.index', compact('book'));
+        $books = Book::paginate(2);
+
+
+        return view('book.index',compact('books'));
 //        $book = Book::get();
 //        dd($book->all());
-        $book = Book::withTarshed()->get();
-        dd($book->all());
+//        $book = Book::withTarshed()->get();
+//        dd($book->all());
     }
 
     /**
