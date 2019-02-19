@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Book;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -40,21 +41,20 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         $data = $request->all();
-        dd($data);
+
         $create_data = [
             'title' => $data['title'],
             'desc' => $data['desc'],
             'content' => $data['content'],
-            'user_id' => Auth::user()->id,
+            'user_id' => Auth::user()->id
         ];
 
         $file = $request->file('cover');
-
         if ($file) {
             $pic_path = $file->store('public/article');
-            $data['cover'] = Storage::url($pic_path);
+            $create_data['cover'] = Storage::url($pic_path);
         }
-
+//        dd($create_data);
         Book::find($data['book_id'])->article()->create($create_data);
 
         return redirect()->route('article.index');

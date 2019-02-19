@@ -3,15 +3,16 @@
 @section('page_style')
     <link rel="stylesheet" href="/css/dropify.min.css">
     <link rel="stylesheet" href="/css/wangEditor.min.css">
+    <link rel="stylesheet" href="/js/components/dropdown.min.css">
 @endsection
 
 @section('page_content')
     <div class="ui container">
         <h2 class="ui dividing header">添加新的文摘</h2>
-        <form class="ui form {{ $errors->any() ? 'error' : '' }}" method="POST" action="{{route('article.store')}}">
+        <form class="ui form {{ $errors->any() ? 'error' : '' }}" method="POST" action="{{route('article.store')}}"  enctype="multipart/form-data">
             <div class="ui grid">
                 <div class="four wide computer column">
-                    <input type="file" class="dropify" data-default-file="" data-allowed-file-extensions="jpg png jpeg"/>
+                    <input type="file" class="dropify" name="cover" data-default-file="" data-allowed-file-extensions="jpg png jpeg"/>
                 </div>
                 <div class="twelve wide computer column">
                     @csrf
@@ -19,7 +20,7 @@
                     <div class="two fields">
                         <div class="field">
                             <label>文摘名称</label>
-                            <input type="text" placeholder="请输入图书名称">
+                            <input type="text" name="title" placeholder="请输入图书名称">
                         </div>
                         <div class="field">
                             <label>文摘标签</label>
@@ -38,16 +39,18 @@
                     </div>
                     <div class="field">
                         <label>文摘简介</label>
-                        <textarea rows="4"></textarea>
+                        <textarea rows="4" name="desc">{{ old('desc') }}</textarea>
                     </div>
-                    <input type="hidden" name="book_id" value="{{$book_id}}">
                     <div class="field">
                         <div id="editor">
                             <p>在这里输入文摘内容</p>
                         </div>
                     </div>
+                    <textarea name="content" id="content" style="display: none">{{ old('content') }}</textarea>
+                    <input type="hidden" name="book_id" value="{{$book_id}}">
                     <button class="ui green button" type="submit">确认发布</button>
                     <a class="ui red button" href="{{route('article.index')}}">返回文摘</a>
+
                 </div>
             </div>
         </form>
@@ -72,10 +75,16 @@
                     'error': '哦噢，出错啦'
                 }
             });
-            var E = window.wangEditor
-            var editor = new E('#editor')
-            editor.customConfig.zIndex = 2
+            var E = window.wangEditor;
+            var editor = new E('#editor');
+            var $content = $('#content');
+            editor.customConfig.onchange = function (html) {
+                // 监控变化，同步更新到 textarea
+                $content.val(html);
+            };
+            editor.customConfig.zIndex = 2;
             editor.create();
+            $content.val(editor.txt.html())
         })
     </script>
 @endsection

@@ -10,6 +10,8 @@ class Article extends Model
         'title',
         'cover',
         'desc',
-        'content'
+        'content',
+        'user_id',
+        'book_id'
     ];
 }
