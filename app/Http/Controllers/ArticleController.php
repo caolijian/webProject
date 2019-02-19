@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Illuminate\Http\Request;
 use App\Book;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Auth;
@@ -79,19 +78,36 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        return view('article.edit');
+        $article = Article::find($id);
+        return view('article.edit',compact('article'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ArticleRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
-        //
+        $data = $request->all();
+//        dd($data);
+        $create_data = [
+            'title' => $data['title'],
+            'desc' => $data['desc'],
+            'content' => $data['content'],
+            'user_id' => Auth::user()->id
+        ];
+
+        $file = $request->file('cover');
+        if ($file) {
+            $pic_path = $file->store('public/article');
+            $create_data['cover'] = Storage::url($pic_path);
+        }
+        Article::find($id)->update($create_data);
+
+        return back()->with('success', '文摘信息修改成功！');
     }
 
     /**

@@ -2,7 +2,7 @@
     <div class="ui container">
         <a class="item active" href="/">主页</a>
         <a class="item" href="{{route('book.index')}}">书架</a>
-        <a class="item" href="article/index.html">文摘</a>
+        <a class="item" href="{{route('article.index')}}">文摘</a>
         <div class="right menu">
             <div class="item">
                 <div class="ui action input">
