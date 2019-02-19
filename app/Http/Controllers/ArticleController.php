@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use Illuminate\Http\Request;
 use App\Book;
 use App\Http\Requests\ArticleRequest;
@@ -17,8 +18,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $books = Book::get();
-        return view('article.index',compact('books'));
+        $articles = Article::paginate(2);
+        return view('article.index',compact('articles'));
     }
 
     /**
@@ -54,7 +55,6 @@ class ArticleController extends Controller
             $pic_path = $file->store('public/article');
             $create_data['cover'] = Storage::url($pic_path);
         }
-//        dd($create_data);
         Book::find($data['book_id'])->article()->create($create_data);
 
         return redirect()->route('article.index');
