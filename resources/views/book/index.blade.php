@@ -27,7 +27,7 @@
                                     <span><i class="user icon"></i> 2 篇文摘 </span>
                                 </div>
                                 <div class="extra content">
-                                    <a href="../article/add.html" class="ui basic fluid green button">写文摘</a>
+                                    <a href="{{route('article.create',['book_id' => $book->id])}}" class="ui basic fluid green button">写文摘</a>
                                 </div>
                             </div>
                         @endforeach

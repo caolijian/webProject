@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Book;
+use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -13,7 +16,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('article.index',compact('article'));
+        $books = Book::get();
+        return view('article.index',compact('books'));
     }
 
     /**
@@ -23,18 +27,37 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $book_id = request()->get('book_id');
+        return view('article.create',compact('book_id'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ArticleRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        //
+        $data = $request->all();
+        dd($data);
+        $create_data = [
+            'title' => $data['title'],
+            'desc' => $data['desc'],
+            'content' => $data['content'],
+            'user_id' => Auth::user()->id,
+        ];
+
+        $file = $request->file('cover');
+
+        if ($file) {
+            $pic_path = $file->store('public/article');
+            $data['cover'] = Storage::url($pic_path);
+        }
+
+        Book::find($data['book_id'])->article()->create($create_data);
+
+        return redirect()->route('article.index');
     }
 
     /**
@@ -56,7 +79,7 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('article.edit');
     }
 
     /**
