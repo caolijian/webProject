@@ -37,7 +37,7 @@
                     </div>
                     <div class="field">
                         <div id="editor">
-                            <p>{!!$book->content!!}</p>
+                            <p>{!! $book->content !!}</p>
                         </div>
                     </div>
                     <button class="ui green button" type="submit" value="submit">确认修改</button>

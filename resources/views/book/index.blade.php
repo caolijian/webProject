@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="extra content">
                                     <span class="right floated">{{$book->created_at}}</span>
-                                    <span><i class="user icon"></i> 2 篇文摘 </span>
+                                    <span><i class="user icon"></i>{{ $book->article_count }}篇文摘</span>
                                 </div>
                                 <div class="extra content">
                                     <a href="{{route('article.create',['book_id' => $book->id])}}" class="ui basic fluid green button">写文摘</a>

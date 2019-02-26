@@ -92,7 +92,6 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, $id)
     {
         $data = $request->all();
-//        dd($data);
         $create_data = [
             'title' => $data['title'],
             'desc' => $data['desc'],

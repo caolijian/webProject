@@ -46,10 +46,10 @@
                     </div>
                     <div class="field">
                         <div id="editor">
-                            <p>在这里输入文摘内容</p>
+                            {!! $article->content !!}
                         </div>
                     </div>
-                    <textarea name="content" id="content" style="display: none">{!! $article->content !!}</textarea>
+                    <textarea name="content" id="content" style="display: none"></textarea>
                     {{--<input type="hidden" name="book_id" value="{{$book_id}}">--}}
                     <button class="ui green button" type="submit">确认修改</button>
                     <a class="ui red button" href="{{route('article.index')}}">返回文摘</a>

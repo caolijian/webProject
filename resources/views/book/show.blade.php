@@ -11,11 +11,16 @@
             {!! $book->content !!}
         </div>
         <h2 class="ui dividing header">相关文摘</h2>
-        <div class="ui segment">
-            <a href="">文摘</a>
-        </div>
-        <div class="ui segment">
-            这本图书下面还没有任何文摘 快去 <a href="#">写一篇</a> 吧
+        <div class="ui stacked segments">
+            @forelse($book->article as $article_value)
+                <div class="ui segment">
+                    <a href="{{ route('article.show', $article_value->id) }}">{{ $article_value->title }}</a>
+                </div>
+            @empty
+                <div class="ui segment">
+                    这本图书下面还没有任何文摘 快去 <a href="{{ route('article.create', ['book_id' => $book->id]) }}">写一篇</a> 吧
+                </div>
+            @endforelse
         </div>
     </div>
 @endsection

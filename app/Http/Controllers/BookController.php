@@ -17,7 +17,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::paginate(2);
+        $books = Book::withCount('article')->paginate(2);
         return view('book.index', compact('books'));
     }
 
@@ -68,7 +68,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $book = Book::find($id);
+        $book = Book::with('article')->findOrFail($id);
 
         return view('book.show',compact('book'));
     }
