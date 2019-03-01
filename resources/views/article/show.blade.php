@@ -1,67 +1,26 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <title>慕课书屋</title>
-    <link rel="stylesheet" href="../resources/css/semantic.min.css">
-    <link rel="stylesheet" href="../resources/css/dropify.min.css">
-    <link rel="stylesheet" href="../resources/css/wangEditor.min.css">
-    <link rel="stylesheet" href="../resources/js/components/dropdown.min.css">
-</head>
-<body>
-<!-- Following Menu -->
-<div class="ui large top menu">
-    <div class="ui container">
-        <a class="item " href="../index.html">主页</a>
-        <a class="item " href="#">书架</a>
-        <a class="item active" href="../article/index.html">文摘</a>
-        <div class="right menu">
-            <form action="#" method="GET" style="margin: 0; padding: 0;display: inherit">
-                <div class="item">
-                    <div class="ui action input">
-                        <input type="text" name="keyword" placeholder="输入关键词...">
-                        <select class="ui compact selection dropdown" name="type">
-                            <option selected="" value="1">图书</option>
-                            <option value="2">文摘</option>
-                        </select>
-                        <button type="submit" class="ui button">搜索</button>
-                    </div>
-                </div>
-            </form>
-            <div class="item">
-                <a class="ui button" href="../auth/login.html">登录</a>
-            </div>
-            <div class="item">
-                <a class="ui primary button" href="../auth/register.html">注册</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Sidebar Menu -->
-<div class="ui vertical inverted sidebar menu">
-    <a class="active item">主页</a>
-    <a class="item">书架</a>
-    <a class="item">文摘</a>
-    <a class="item">登录</a>
-    <a class="item">注册</a>
-</div>
-<!-- Page Contents -->
+@extends('common.layout')
+
+@section('page_style')
+    <style>
+        .ui.comments .comment .avatar img, .ui.comments .comment img.avatar {
+            height: inherit;
+        }
+    </style>
+@endsection
+
+@section('page_content')
 <div class="ui container">
     <div class="ui grid">
         <div class="eleven wide computer column">
             <div class="ui text container" style="max-width:100% !important">
-                <h2 class="ui header">文摘标题</h2>
-                <p>一段测试用的填充内容，没有任何意义。请更多的关注样式而不是这些文字。这段话为啥会被拿来填充内容我也<strong>加粗的不知道</strong>，不过它肯定会被无视的，所以就随便写点什么好了，就是给你们看个样子的。这些一点意义都没有的内容不是给你们看的，不要看我，看样式，可以不？这些内容都是扯淡的，文字也都是随便写的，并没有什么用——看看就好。写这么多废话也是很费劲的事情，对吧。不管怎么说我写这么多东西都是没有用的。一段测试用的填充内容，没有任何意义<a href="#">链接</a>。请更多的关注样式而不是这些文字。这段话为啥会被拿来填充内容我也不知道，不过它肯定会被无视的，所以就随便写点什么好了，就是给你们看个样子的。这些一点意义都没有的内容不是给你们看的，不要看我，看样式，可以不？这些内容都是扯淡的，文字也都是随便写的，并没有什么用——看看就好。写这么多废话也是很费劲的事情，对吧。不管怎么说我写这么多东西都是没有用的。</p>
-                <p>一段测试用的填充内容，没有任何意义。请更多的关注样式而不是这些文字。这段话为啥会被拿来填充内容我也<strong>加粗的不知道</strong>，不过它肯定会被无视的，所以就随便写点什么好了，就是给你们看个样子的。这些一点意义都没有的内容不是给你们看的，不要看我，看样式，可以不？这些内容都是扯淡的，文字也都是随便写的，并没有什么用——看看就好。写这么多废话也是很费劲的事情，对吧。不管怎么说我写这么多东西都是没有用的。一段测试用的填充内容，没有任何意义<a href="#">链接</a>。请更多的关注样式而不是这些文字。这段话为啥会被拿来填充内容我也不知道，不过它肯定会被无视的，所以就随便写点什么好了，就是给你们看个样子的。这些一点意义都没有的内容不是给你们看的，不要看我，看样式，可以不？这些内容都是扯淡的，文字也都是随便写的，并没有什么用——看看就好。写这么多废话也是很费劲的事情，对吧。不管怎么说我写这么多东西都是没有用的。</p>
-                <p>一段测试用的填充内容，没有任何意义。请更多的关注样式而不是这些文字。这段话为啥会被拿来填充内容我也<strong>加粗的不知道</strong>，不过它肯定会被无视的，所以就随便写点什么好了，就是给你们看个样子的。这些一点意义都没有的内容不是给你们看的，不要看我，看样式，可以不？这些内容都是扯淡的，文字也都是随便写的，并没有什么用——看看就好。写这么多废话也是很费劲的事情，对吧。不管怎么说我写这么多东西都是没有用的。一段测试用的填充内容，没有任何意义<a href="#">链接</a>。请更多的关注样式而不是这些文字。这段话为啥会被拿来填充内容我也不知道，不过它肯定会被无视的，所以就随便写点什么好了，就是给你们看个样子的。这些一点意义都没有的内容不是给你们看的，不要看我，看样式，可以不？这些内容都是扯淡的，文字也都是随便写的，并没有什么用——看看就好。写这么多废话也是很费劲的事情，对吧。不管怎么说我写这么多东西都是没有用的。</p>
-                <p>一段测试用的填充内容，没有任何意义。请更多的关注样式而不是这些文字。这段话为啥会被拿来填充内容我也<strong>加粗的不知道</strong>，不过它肯定会被无视的，所以就随便写点什么好了，就是给你们看个样子的。这些一点意义都没有的内容不是给你们看的，不要看我，看样式，可以不？这些内容都是扯淡的，文字也都是随便写的，并没有什么用——看看就好。写这么多废话也是很费劲的事情，对吧。不管怎么说我写这么多东西都是没有用的。一段测试用的填充内容，没有任何意义<a href="#">链接</a>。请更多的关注样式而不是这些文字。这段话为啥会被拿来填充内容我也不知道，不过它肯定会被无视的，所以就随便写点什么好了，就是给你们看个样子的。这些一点意义都没有的内容不是给你们看的，不要看我，看样式，可以不？这些内容都是扯淡的，文字也都是随便写的，并没有什么用——看看就好。写这么多废话也是很费劲的事情，对吧。不管怎么说我写这么多东西都是没有用的。</p>
-                <p>一段测试用的填充内容，没有任何意义。请更多的关注样式而不是这些文字。这段话为啥会被拿来填充内容我也<strong>加粗的不知道</strong>，不过它肯定会被无视的，所以就随便写点什么好了，就是给你们看个样子的。这些一点意义都没有的内容不是给你们看的，不要看我，看样式，可以不？这些内容都是扯淡的，文字也都是随便写的，并没有什么用——看看就好。写这么多废话也是很费劲的事情，对吧。不管怎么说我写这么多东西都是没有用的。一段测试用的填充内容，没有任何意义<a href="#">链接</a>。请更多的关注样式而不是这些文字。这段话为啥会被拿来填充内容我也不知道，不过它肯定会被无视的，所以就随便写点什么好了，就是给你们看个样子的。这些一点意义都没有的内容不是给你们看的，不要看我，看样式，可以不？这些内容都是扯淡的，文字也都是随便写的，并没有什么用——看看就好。写这么多废话也是很费劲的事情，对吧。不管怎么说我写这么多东西都是没有用的。</p>
+                <h2 class="ui header">{{$article->title}}</h2>
+                {!! $article->content !!}
             </div>
             <h2 class="ui dividing header">相关评论</h2>
             <div class="ui comments">
                 <div class="comment">
                     <a class="avatar">
-                        <img src="../resources/images/avatar_1.jpg">
+                        <img src="/images/avatar_1.jpg">
                     </a>
                     <div class="content">
                         <a class="author">张三</a>
@@ -80,7 +39,7 @@
                 </div>
                 <div class="comment">
                     <a class="avatar">
-                        <img src="../resources/images/avatar_2.jpg">
+                        <img src="/images/avatar_2.jpg">
                     </a>
                     <div class="content">
                         <a class="author">赵柳</a>
@@ -99,7 +58,7 @@
                 </div>
                 <div class="comment">
                     <a class="avatar">
-                        <img src="../resources/images/avatar_3.jpg">
+                        <img src="/images/avatar_3.jpg">
                     </a>
                     <div class="content">
                         <a class="author">王五</a>
@@ -118,7 +77,7 @@
                 </div>
                 <div class="comment">
                     <a class="avatar">
-                        <img src="../resources/images/avatar_4.jpg">
+                        <img src="/images/avatar_4.jpg">
                     </a>
                     <div class="content">
                         <a class="author">李四</a> 回复 <a class="author">张三</a>
@@ -150,7 +109,7 @@
             <div class="ui divided items">
                 <div class="item">
                     <div class="ui tiny image">
-                        <img src="../resources/images/article_1.png">
+                        <img src="/images/article_1.jpeg">
                     </div>
                     <div class="middle aligned content">
                         <a class="header">文章1</a>
@@ -161,7 +120,7 @@
                 </div>
                 <div class="item">
                     <div class="ui tiny image">
-                        <img src="../resources/images/article_2.png">
+                        <img src="/images/article_2.jpeg">
                     </div>
                     <div class="middle aligned content">
                         <a class="header">文章2</a>
@@ -172,7 +131,7 @@
                 </div>
                 <div class="item">
                     <div class="ui tiny image">
-                        <img src="../resources/images/article_3.png">
+                        <img src="/images/article_3.jpeg">
                     </div>
                     <div class="middle aligned content">
                         <a class="header">文章3</a>
@@ -183,7 +142,7 @@
                 </div>
                 <div class="item">
                     <div class="ui tiny image">
-                        <img src="../resources/images/article_4.png">
+                        <img src="/images/article_4.jpeg">
                     </div>
                     <div class="middle aligned content">
                         <a class="header">文章4</a>
@@ -194,7 +153,7 @@
                 </div>
                 <div class="item">
                     <div class="ui tiny image">
-                        <img src="../resources/images/article_5.png">
+                        <img src="/images/article_5.jpeg">
                     </div>
                     <div class="middle aligned content">
                         <a class="header">文章5</a>
@@ -205,7 +164,7 @@
                 </div>
                 <div class="item">
                     <div class="ui tiny image">
-                        <img src="../resources/images/article_6.png">
+                        <img src="/images/article_6.jpeg">
                     </div>
                     <div class="middle aligned content">
                         <a class="header">文章6</a>
@@ -218,7 +177,15 @@
         </div>
     </div>
 </div>
-<script src="../resources/js/jquery.min.js"></script>
-<script src="../resources/js/semantic.min.js"></script>
-</body>
-</html>
+@endsection
+
+
+
+@section('page_script')
+    <script>
+        $('.reply-button').on('click', function () {
+            $('#reply_user_id').val($(this).data('author'));
+            $('#content').focus();
+        })
+    </script>
+@endsection
