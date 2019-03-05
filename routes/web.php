@@ -24,3 +24,6 @@ Route::resource('user', 'UserController');
 Route::resource('book', 'BookController');
 
 Route::resource('article', 'ArticleController');
+
+Route::resource('tag', 'TagController');
+

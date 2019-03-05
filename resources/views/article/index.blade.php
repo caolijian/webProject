@@ -1,5 +1,8 @@
 @extends('common.layout')
 
+@section('page_style')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 @section('page_content')
     <div class="ui container">
         <div class="ui segments">
@@ -30,12 +33,16 @@
                                 <a class="ui right floated button" href="{{route('article.show',$article->id)}}">
                                     阅读全文
                                 </a>
+                                {{--@can('update', $article)--}}
                                 <a class="ui right floated blue button" href="{{route('article.edit',$article->id)}}">
                                     修改
                                 </a>
-                                <a class="ui right floated red button" href="{{route('article.destroy',$article->id)}}">
+                                {{--@endcan--}}
+                                {{--@can('delete', $article)--}}
+                                <a class="ui right floated red button" href="javascript:delModel('{{ route('article.destroy', $article->id) }}')">
                                     删除
                                 </a>
+                                {{--@endcan--}}
                             </div>
                         </div>
                     </div>
@@ -50,4 +57,23 @@
         </div>
     </div>
 
+@endsection
+
+@section('page_script')
+    <script>
+        $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+
+
+        function delModel(url){
+            alert(1)
+            $.ajax({
+                url: url,
+                type: "DELETE",
+                success: function () {
+                    window.location.reload();
+                },
+                dataType: "json"
+            })
+        }
+    </script>
 @endsection

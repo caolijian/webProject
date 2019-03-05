@@ -118,6 +118,8 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd($id);
+        $article = Article::find($id);
+        dd($article);
     }
 }
